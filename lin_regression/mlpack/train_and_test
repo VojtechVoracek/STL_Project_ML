@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo "Hello, world!"
+
+TRAINFEATURES_FILE=preprocessed_data/diabetes.data.train.csv
+TRAINLABELS_FILE=preprocessed_data/diabetes.labels.train.csv
+
+TESTFEATURES_FILE=preprocessed_data/diabetes.data.test.csv
+TESTLABELS_FILE=preprocessed_data/diabetes.labels.test.csv
+
+
+
+mlpack_linear_regression \
+	--training_file  $TRAINFEATURES_FILE\
+	--training_responses_file $TRAINLABELS_FILE \
+	--output_model_file lr_model.xml
+
+mlpack_linear_regression \
+	--input_model_file lr_model.xml \
+	--test_file $TESTFEATURES_FILE \
+	--output_predictions_file diabetes.labels.test.predicted.csv

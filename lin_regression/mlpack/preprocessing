@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo "This program performs a split into training and test data, which are then stored in separate files."
+
+FEATURES_FILE=../../prepared_datasets/diabetes.data.csv
+LABELS_FILE=../../prepared_datasets/diabetes.labels.csv
+
+mlpack_preprocess_split \
+	-i $FEATURES_FILE \
+	-I $LABELS_FILE \
+	-t preprocessed_data/diabetes.data.train.csv \
+	-l preprocessed_data/diabetes.labels.train.csv \
+	-T preprocessed_data/diabetes.data.test.csv \
+	-L preprocessed_data/diabetes.labels.test.csv \
+	-r 0.3 \
+	-v
+	
