@@ -12,6 +12,6 @@ mlpack_preprocess_split \
 	-l preprocessed_data/diabetes.labels.train.csv \
 	-T preprocessed_data/diabetes.data.test.csv \
 	-L preprocessed_data/diabetes.labels.test.csv \
-	-r 0.3 \
+	-r 0.2 \
 	-v
 	
