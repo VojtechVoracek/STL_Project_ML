@@ -28,8 +28,8 @@ echo "Dataset: $DATASET, Testsetsize: $TESTSIZE"
 
 ####################################################################################
 # # split the data into training and test sets and store the files into a folder called "prepared_datasets"
-FEATURES_FILE=../../prepared_datasets/$DATASET.data.csv
-LABELS_FILE=../../prepared_datasets/$DATASET.labels.csv
+FEATURES_FILE=../prepared_datasets/$DATASET.data.csv
+LABELS_FILE=../prepared_datasets/$DATASET.labels.csv
 
 # create directory if it doesn't exist
 mkdir -p preprocessed_data
