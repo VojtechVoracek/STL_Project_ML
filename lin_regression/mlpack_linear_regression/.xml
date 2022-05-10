@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="19">
+<model class_id="0" tracking_level="0" version="0">
+	<parameters class_id="1" tracking_level="0" version="0">
+		<n_rows>10</n_rows>
+		<n_cols>1</n_cols>
+		<n_elem>10</n_elem>
+		<vec_state>1</vec_state>
+		<item>3.89463655570568744e+03</item>
+		<item>1.06966418885750427e+04</item>
+		<item>1.21650788613284405e+02</item>
+		<item>3.17532924901399156e+02</item>
+		<item>4.97230719561976514e+02</item>
+		<item>-8.11619813068828790e+01</item>
+		<item>-2.87686421132608601e+01</item>
+		<item>-1.00864586735535920e+03</item>
+		<item>1.90347144418877150e+02</item>
+		<item>-2.75753607725882937e+01</item>
+	</parameters>
+	<lambda>0.00000000000000000e+00</lambda>
+	<intercept>1</intercept>
+</model>
+</boost_serialization>
+
