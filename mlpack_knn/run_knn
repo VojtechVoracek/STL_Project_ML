@@ -1,0 +1,70 @@
+#!/bin/bash
+echo -e "\n"
+echo "Description: This program performs a random split into training and test data, which are then stored in separate files."
+echo "Further, this program fits a linear regression model with the training data and predicts the labels of the test data."
+
+
+####################################################################################
+# set default variables or overwrite them by setting flags.
+# -t value sets the chosen testset size (value as a fraction between 0 and 1) 
+# -v switches on the verbose mode for the mlpack commands. This prints more details to the terminal.
+
+# default values
+DATASET="iris"
+TESTSIZE=0.2
+VERBOSE="" 
+
+# read optional flags to set parameters
+while getopts 'd:t:v' OPTION;
+do
+    case "${OPTION}" in
+	d) DATASET=${OPTARG};;
+        t) TESTSIZE=${OPTARG};;
+        v) VERBOSE="-v";;
+    esac
+done
+
+echo "Dataset: $DATASET, Testsetsize: $TESTSIZE"
+
+####################################################################################
+# # split the data into training and test sets and store the files into a folder called "prepared_datasets"
+FEATURES_FILE=../prepared_datasets/$DATASET.data.csv
+LABELS_FILE=../prepared_datasets/$DATASET.labels.csv
+
+# create directory if it doesn't exist
+mkdir -p preprocessed_data
+mkdir -p predicted_data
+
+
+mlpack_preprocess_split \
+	-i $FEATURES_FILE \
+	-I $LABELS_FILE \
+	-t preprocessed_data/$DATASET.data.train.csv \
+	-l preprocessed_data/$DATASET.labels.train.csv \
+	-T preprocessed_data/$DATASET.data.test.csv \
+	-L preprocessed_data/$DATASET.labels.test.csv \
+	-r $TESTSIZE \
+	$VERBOSE
+
+####################################################################################
+# fit the linear regression model and predict the test dataset. Stores the predicted values into a folder called "predicted_data"
+
+TRAINFEATURES_FILE=preprocessed_data/$DATASET.data.train.csv
+TRAINLABELS_FILE=preprocessed_data/$DATASET.labels.train.csv
+
+TESTFEATURES_FILE=preprocessed_data/$DATASET.data.test.csv
+TESTLABELS_FILE=preprocessed_data/$DATASET.labels.test.csv
+
+TESTLABELS_PREDIC_FILE="predicted_data/$DATASET.labels.test.predicted.csv"
+
+mlpack_knn \
+	--k 5 \
+
+	$VERBOSE
+
+####################################################################################
+# executes the accuracy calculation (Mean Squared Error) which has been implemented in C++
+cd accuracy_calculation
+./main $DATASET
+cd ..
+
