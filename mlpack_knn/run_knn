@@ -12,14 +12,16 @@ echo "Further, this program calculates the k nearest neighbours of the test samp
 # default values
 DATASET="iris"
 TESTSIZE=0.2
+K=5
 VERBOSE="" 
 
 # read optional flags to set parameters
-while getopts 'd:t:v' OPTION;
+while getopts 'd:t:k:v' OPTION;
 do
     case "${OPTION}" in
 	d) DATASET=${OPTARG};;
         t) TESTSIZE=${OPTARG};;
+        k) K=${OPTARG};;
         v) VERBOSE="-v";;
     esac
 done
@@ -61,16 +63,17 @@ DISTANCES_FILE=neighbours_data/$DATASET.distances.test.csv
 NEIGHBOURS_FILE=neighbours_data/$DATASET.neighbours.test.csv
 
 mlpack_knn \
-	--k 5 \
+	--k $K \
 	--reference_file $TRAINFEATURES_FILE \
 	--query_file $TESTFEATURES_FILE \
 	--distances_file $DISTANCES_FILE \
 	--neighbors_file $NEIGHBOURS_FILE \
+	--leaf_size 30 \
  	$VERBOSE
 
 ####################################################################################
 # executes the accuracy calculation (Mean Squared Error) which has been implemented in C++
-#cd accuracy_calculation
-#./main $DATASET
-#cd ..
+cd predict_classes
+./main $DATASET
+cd ..
 
