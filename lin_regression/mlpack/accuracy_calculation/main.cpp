@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <cmath>
+#include <numeric>
 #include <mlpack/core.hpp>
 
 
@@ -46,6 +47,19 @@ double compute_MSE(std::vector<double>& true_labels, std::vector<double>& predic
     return mse;
 }
 
+double compute_R_squared(std::vector<double>& true_labels, std::vector<double>& predicted_labels){
+    double r_squared = 0, rss = 0, tss=0;
+    int no_rows = true_labels.size();
+    double true_average = std::accumulate( true_labels.begin(), true_labels.end(), 0.0) / no_rows;
+
+    for(int i = 0; i < no_rows; i++){
+        rss = rss + pow(true_labels[i] - predicted_labels[i],2);
+        tss = tss + pow(true_labels[i] - true_average,2);
+    }
+    r_squared = 1 - (rss / tss);
+    return r_squared;
+}
+
 
 int main(){
 
@@ -73,10 +87,12 @@ int main(){
     arma::mat data(test_labels_propared);
     data.print();
     std::cout << data.n_rows << ' ' << data.n_cols << ' ' << data.n_elem; */
-
+    double r_squared = compute_R_squared(test_labels_prepared,test_labels_predicted_prepared);
     double mse = compute_MSE(test_labels_prepared,test_labels_predicted_prepared);
     std::cout << "Evaluation of test prediction" << std::endl;
     std::cout << "Mean Squared Error: " << mse << std::endl;
+    std::cout << "Root Mean Squared Error: " << std::sqrt(mse) << std::endl;
+    std::cout << "R^2: " << r_squared << std::endl;
 
     return 0;
 }
