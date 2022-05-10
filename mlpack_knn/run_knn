@@ -1,7 +1,7 @@
 #!/bin/bash
 echo -e "\n"
 echo "Description: This program performs a random split into training and test data, which are then stored in separate files."
-echo "Further, this program fits a linear regression model with the training data and predicts the labels of the test data."
+echo "Further, this program calculates the k nearest neighbours of the test samples inside the training dataset and predicts the labels of the test data via majority vote."
 
 
 ####################################################################################
@@ -34,7 +34,7 @@ LABELS_FILE=../prepared_datasets/$DATASET.labels.csv
 # create directory if it doesn't exist
 mkdir -p preprocessed_data
 mkdir -p predicted_data
-
+mkdir -p neighbours_data
 
 mlpack_preprocess_split \
 	-i $FEATURES_FILE \
@@ -57,14 +57,20 @@ TESTLABELS_FILE=preprocessed_data/$DATASET.labels.test.csv
 
 TESTLABELS_PREDIC_FILE="predicted_data/$DATASET.labels.test.predicted.csv"
 
+DISTANCES_FILE=neighbours_data/$DATASET.distances.test.csv
+NEIGHBOURS_FILE=neighbours_data/$DATASET.neighbours.test.csv
+
 mlpack_knn \
 	--k 5 \
-
-	$VERBOSE
+	--reference_file $TRAINFEATURES_FILE \
+	--query_file $TESTFEATURES_FILE \
+	--distances_file $DISTANCES_FILE \
+	--neighbors_file $NEIGHBOURS_FILE \
+ 	$VERBOSE
 
 ####################################################################################
 # executes the accuracy calculation (Mean Squared Error) which has been implemented in C++
-cd accuracy_calculation
-./main $DATASET
-cd ..
+#cd accuracy_calculation
+#./main $DATASET
+#cd ..
 

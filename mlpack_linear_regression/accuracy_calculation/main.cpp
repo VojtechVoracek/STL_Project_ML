@@ -1,3 +1,7 @@
+// this program calculates some accurecy metrics for a linear regression task.
+// the Input files are the true and the predicted labels.
+// STL Project HS
+
 #include <iostream>
 #include <fstream>
 #include <vector>
