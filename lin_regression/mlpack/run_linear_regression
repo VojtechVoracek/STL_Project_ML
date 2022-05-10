@@ -6,6 +6,8 @@ echo "Further, this program fits a linear regression model with the training dat
 
 ####################################################################################
 # set default variables or overwrite them by setting flags.
+# -t value sets the chosen testset size (value as a fraction between 0 and 1) 
+# -v switches on the verbose mode for the mlpack commands. This prints more details to the terminal.
 
 # default values
 testsize=0.2
