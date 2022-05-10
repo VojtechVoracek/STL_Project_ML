@@ -38,4 +38,7 @@ mlpack_linear_regression \
 	--verbose
 
 # executes the accuracy calculation (Mean Squared Error) which has been implemented in C++
-./accuracy_calculation/main
+cd accuracy_calculation
+./main
+cd ..
+

@@ -58,22 +58,25 @@ int main(){
     readDataFromFile(path_diabetes_test_labels, diabetes_test_labels);
     readDataFromFile(path_diabetes_test_labels_predicted, diabetes_test_labels_predicted);
 
-    
+   
     int length = diabetes_test_labels.size();
-    
     // prepare vector of vectors because it needs to be stored as one column vector
-    std::vector<double> test_labels_propared;
+    std::vector<double> test_labels_prepared;
+    std::vector<double> test_labels_predicted_prepared;
     for(int i = 0; i<length; i++){
-        test_labels_propared.push_back(diabetes_test_labels[i][0]);
+        test_labels_prepared.push_back(diabetes_test_labels[i][0]);
+        test_labels_predicted_prepared.push_back(diabetes_test_labels_predicted[i][0]);
     }
 
+    // this code part transforms a vector into an arma::mat object.
+    /* 
     arma::mat data(test_labels_propared);
     data.print();
+    std::cout << data.n_rows << ' ' << data.n_cols << ' ' << data.n_elem; */
 
-    std::cout << data.n_rows << ' ' << data.n_cols << ' ' << data.n_elem;
-
-    //double mse = compute_MSE(diabetes_test_labels[0],diabetes_test_labels_predicted[0]);
-    //std::cout << mse;
+    double mse = compute_MSE(test_labels_prepared,test_labels_predicted_prepared);
+    std::cout << "Evaluation of test prediction" << std::endl;
+    std::cout << "Mean Squared Error: " << mse << std::endl;
 
     return 0;
 }
