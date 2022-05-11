@@ -99,10 +99,10 @@ int main(int argc, char** argv){
     std::cout << data.n_rows << ' ' << data.n_cols << ' ' << data.n_elem; */
     double r_squared = compute_R_squared(test_labels_prepared,test_labels_predicted_prepared);
     double mse = compute_MSE(test_labels_prepared,test_labels_predicted_prepared);
-    std::cout << "Evaluation of test prediction on " +dataset+ " dataset:" << std::endl;
-    std::cout << "Mean Squared Error: " << mse << std::endl;
-    std::cout << "Root Mean Squared Error: " << std::sqrt(mse) << std::endl;
-    std::cout << "R^2: " << r_squared << std::endl;
-
+    //std::cout << "Evaluation of test prediction on " +dataset+ " dataset:" << std::endl;
+    //std::cout << "Mean Squared Error: " << mse << std::endl;
+    //std::cout << "Root Mean Squared Error: " << std::sqrt(mse) << std::endl;
+    //std::cout << "R^2: " << r_squared << std::endl;
+    std::cout << mse;
     return 0;
 }

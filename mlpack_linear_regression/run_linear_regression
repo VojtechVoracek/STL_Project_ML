@@ -68,6 +68,7 @@ mlpack_linear_regression \
 ####################################################################################
 # executes the accuracy calculation (Mean Squared Error) which has been implemented in C++
 cd accuracy_calculation
-./main $DATASET
+MSE=$(./main $DATASET)
 cd ..
 
+echo "Mean Squared Error: $MSE"
