@@ -1,5 +1,5 @@
 from shogun import *
-
+from sklearn.metrics import confusion_matrix
 
 def linear_regression(x_train, x_test, y_train, y_test):
 
@@ -30,5 +30,6 @@ def k_nn(x_train, x_test, y_train, y_test, k):
     labels_predict = knn.apply_multiclass(x_test)
 
     acc = MulticlassAccuracy().evaluate(labels_predict, y_test)
+    conf_mat = MulticlassAccuracy.get_confusion_matrix(labels_predict, y_test)
 
-    return acc
+    return acc, conf_mat

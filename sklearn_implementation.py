@@ -1,7 +1,7 @@
 from sklearn.linear_model import LinearRegression
 from sklearn import metrics
 from sklearn.neighbors import KNeighborsClassifier
-
+from main import plot_cm
 
 def linear_regression(x_train, x_test, y_train, y_test):
 
@@ -18,6 +18,8 @@ def k_nn(x_train, x_test, y_train, y_test, k):
     knn = KNeighborsClassifier(n_neighbors=k)
     knn.fit(x_train, y_train.T[0])
     pred = knn.predict(x_test)
-    acc = metrics.accuracy_score(y_test, pred)
 
-    return acc
+    acc = metrics.accuracy_score(y_test, pred)
+    conf_mat = metrics.confusion_matrix(y_test, pred)
+
+    return acc, conf_mat
