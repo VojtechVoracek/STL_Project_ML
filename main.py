@@ -45,7 +45,7 @@ def plot_cm(cm, title):
     plt.title(title, fontsize=30, y=1.01)
     sn.heatmap(df_cm, annot=True, cmap="YlGnBu", norm=LogNorm(), cbar=False)
 
-    plt.savefig(title + ".png")
+    plt.savefig("figures/" + title + ".png")
 
 
 
