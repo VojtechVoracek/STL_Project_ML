@@ -1,4 +1,6 @@
 import numpy as np
+import pandas as pd
+
 from LoadDatasets import *
 import shogun_implementation
 import sklearn_implementation

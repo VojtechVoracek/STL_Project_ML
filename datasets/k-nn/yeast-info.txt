@@ -42,6 +42,15 @@ Class Distribution. The class is the localization site. Please see Nakai &
   POX (peroxisomal)                                   20
   ERL (endoplasmic reticulum lumen)                    5
 
+0 CYT
+1 ERL
+2 EXC
+3 ME1
+4 ME2
+5 ME3
+6 MIT
+7 NUC
+8 POX
 
 
 dataset website: https://archive.ics.uci.edu/ml/datasets/Yeast

@@ -1,7 +1,7 @@
 from sklearn.linear_model import LinearRegression
 from sklearn import metrics
 from sklearn.neighbors import KNeighborsClassifier
-from main import plot_cm
+
 
 def linear_regression(x_train, x_test, y_train, y_test):
 
