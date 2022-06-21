@@ -18,7 +18,7 @@ VERBOSE=""
 while getopts 'd:t:v' OPTION;
 do
     case "${OPTION}" in
-	d) DATASET=${OPTARG};;
+		d) DATASET=${OPTARG};;
         t) TESTSIZE=${OPTARG};;
         v) VERBOSE="-v";;
     esac

@@ -19,7 +19,7 @@ VERBOSE=""
 while getopts 'd:t:k:v' OPTION;
 do
     case "${OPTION}" in
-	d) DATASET=${OPTARG};;
+		d) DATASET=${OPTARG};;
         t) TESTSIZE=${OPTARG};;
         k) K=${OPTARG};;
         v) VERBOSE="-v";;
@@ -49,7 +49,7 @@ mlpack_preprocess_split \
 	$VERBOSE
 
 ####################################################################################
-# fit the linear regression model and predict the test dataset. Stores the predicted values into a folder called "predicted_data"
+# fit the knn model and predict the test dataset. Stores the predicted values into a folder called "predicted_data"
 
 TRAINFEATURES_FILE=preprocessed_data/$DATASET.data.train.csv
 TRAINLABELS_FILE=preprocessed_data/$DATASET.labels.train.csv
